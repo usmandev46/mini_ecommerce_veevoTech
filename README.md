@@ -17,8 +17,11 @@ The app allows users to log in, browse products, manage their cart, and view the
    ```bash
    git clone https://github.com/usmandev46/mini_ecommerce_veevoTech.git 
    cd mini_ecommerce_veevoTech
-
-
+   
+### login details:
+    "username": "mor_2314"
+    "password": "83r5^_"
+  
 ### What Features Are Working:
 
 1. 🔐 Login

@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../models/product/product.dart';
-import '../views/profile/product_details_screen.dart';
+import '../views/home/product_details_screen.dart';
 import 'custom_loader.dart';
 
 class ProductCard extends StatelessWidget {

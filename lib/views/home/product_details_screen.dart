@@ -80,12 +80,11 @@ class ProductDetailsScreen extends StatelessWidget {
 
             const SizedBox(height: 32),
 
-            // Add to Cart Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // TODO: Add to cart logic with Cubit
+
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
