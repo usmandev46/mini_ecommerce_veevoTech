@@ -70,6 +70,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     onChanged: (value) {
                       context.read<ProductCubit>().searchProducts(value);
+                      setState(() {
+
+                      });
                     },
                   ),
                 ),

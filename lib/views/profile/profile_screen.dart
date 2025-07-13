@@ -19,14 +19,38 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
-    void _logout(BuildContext context) async {
-      await StorageService().clearToken();
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (_) => LoginScreen()),
-        (route) => false,
+    void _confirmLogout(BuildContext context) async {
+      final shouldLogout = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          title: const Text('Logout',style: TextStyle(fontWeight: FontWeight.bold),),
+          content: const Text('Are you sure you want to logout?',style: TextStyle(fontWeight: FontWeight.w400),),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Logout', style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        ),
       );
+
+      if (shouldLogout == true) {
+        await StorageService().clearToken();
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => LoginScreen()),
+              (route) => false,
+        );
+      }
     }
+
 
     return BlocProvider(
       create: (_) => UserCubit(ApiService())..fetchUser(userId),
@@ -138,7 +162,7 @@ class ProfileScreen extends StatelessWidget {
                     const SizedBox(height: 12),
 
                     ElevatedButton.icon(
-                      onPressed: () => _logout(context),
+                      onPressed: () => _confirmLogout(context),
                       icon: const Icon(Icons.logout),
                       label: const Text('Logout'),
                       style: ElevatedButton.styleFrom(
